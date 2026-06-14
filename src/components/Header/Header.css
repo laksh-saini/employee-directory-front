@@ -1,9 +1,36 @@
 .header {
   display: flex;
   align-items: center;
+  gap: 12px;
   padding: 16px 20px;
   border-bottom: 1px solid #f0f0f5;
   background: #fff;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  flex-shrink: 0;
+}
+
+.hamburger-bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #374151;
+  border-radius: 2px;
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
 }
 
 .header-brand {

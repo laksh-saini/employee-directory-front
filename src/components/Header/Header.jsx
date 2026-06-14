@@ -1,8 +1,14 @@
 import "./Header.css"
 
-function Header() {
+function Header({ onMenuClick }) {
   return (
     <header className="header">
+      <button className="hamburger" onClick={onMenuClick} aria-label="Open menu">
+        <span className="hamburger-bar" />
+        <span className="hamburger-bar" />
+        <span className="hamburger-bar" />
+      </button>
+
       <div className="header-brand">
         <div className="header-logo">Z</div>
         <div>

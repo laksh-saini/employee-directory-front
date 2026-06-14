@@ -10,6 +10,7 @@ import "./App.css"
 function App() {
   const [query, setQuery] = useState("")
   const [selectedEmployee, setSelectedEmployee] = useState(null)
+  const [sidebarOpen, setSidebarOpen] = useState(false)
 
   const filtered = employees.filter((emp) => {
     const q = query.toLowerCase()
@@ -22,10 +23,10 @@ function App() {
 
   return (
     <div className="app">
-      <Sidebar />
+      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
       <div className="main">
-        <Header />
+        <Header onMenuClick={() => setSidebarOpen(true)} />
 
         <div className="content">
           <div className="content-top">
