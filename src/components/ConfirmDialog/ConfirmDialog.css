@@ -1,0 +1,94 @@
+.dialog-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 200;
+  animation: fadeIn 0.15s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.confirm-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 380px;
+  background: #fff;
+  border-radius: 16px;
+  padding: 28px;
+  z-index: 201;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  animation: popIn 0.2s ease;
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: translate(-50%, -48%) scale(0.96); }
+  to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+.dialog-title {
+  margin: 0 0 10px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #111;
+}
+
+.dialog-message {
+  margin: 0 0 24px;
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+.dialog-message strong {
+  color: #111;
+}
+
+.dialog-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.dialog-btn-cancel {
+  flex: 1;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #fff;
+  color: #6b7280;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.dialog-btn-cancel:hover {
+  background: #f9fafb;
+}
+
+.dialog-btn-delete {
+  flex: 1;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  background: #dc2626;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.dialog-btn-delete:hover {
+  background: #b91c1c;
+}
+
+@media (max-width: 440px) {
+  .confirm-dialog {
+    width: calc(100% - 32px);
+  }
+}

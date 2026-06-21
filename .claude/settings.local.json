@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm create *)",
+      "Bash(npx create-vite@latest . -- --template react-ts)",
+      "Bash(echo '{\"name\":\"employee-directory\",\"private\":true,\"version\":\"0.0.0\",\"type\":\"module\",\"scripts\":{\"dev\":\"vite\",\"build\":\"tsc -b && vite build\",\"preview\":\"vite preview\"},\"dependencies\":{\"react\":\"^18.3.1\",\"react-dom\":\"^18.3.1\",\"lucide-react\":\"^0.400.0\"},\"devDependencies\":{\"@types/react\":\"^18.3.1\",\"@types/react-dom\":\"^18.3.1\",\"@vitejs/plugin-react\":\"^4.3.1\",\"autoprefixer\":\"^10.4.19\",\"postcss\":\"^8.4.40\",\"tailwindcss\":\"^3.4.7\",\"typescript\":\"^5.5.3\",\"vite\":\"^5.4.0\"}}')",
+      "Bash(npm install *)",
+      "Bash(npx tsc *)",
+      "Bash(npm run *)",
+      "Bash(rm -rf /Users/lakshsaini/employee-directory/src /Users/lakshsaini/employee-directory/tsconfig* /Users/lakshsaini/employee-directory/tailwind.config.js /Users/lakshsaini/employee-directory/postcss.config.js)",
+      "Bash(node --input-type=module)"
+    ],
+    "additionalDirectories": [
+      "/Users/lakshsaini/employee-directory"
+    ]
+  }
+}

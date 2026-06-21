@@ -11,10 +11,7 @@ function Header({ onMenuClick }) {
 
       <div className="header-brand">
         <div className="header-logo">Z</div>
-        <div>
-          <p className="header-company">ZentrixHR</p>
-          <p className="header-tagline">HR Management</p>
-        </div>
+        <p className="header-company">ZentrixHR</p>
       </div>
     </header>
   )

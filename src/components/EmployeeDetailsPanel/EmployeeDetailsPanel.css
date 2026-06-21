@@ -159,6 +159,48 @@
   word-break: break-word;
 }
 
+.panel-footer {
+  display: flex;
+  gap: 10px;
+  padding: 16px 24px;
+  border-top: 1px solid #f5f5f5;
+  margin-top: auto;
+}
+
+.panel-btn-edit {
+  flex: 2;
+  padding: 10px;
+  font-size: 13.5px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  background: #7c3aed;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.panel-btn-edit:hover {
+  background: #6d28d9;
+}
+
+.panel-btn-close {
+  flex: 1;
+  padding: 10px;
+  font-size: 13.5px;
+  font-weight: 500;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #fff;
+  color: #6b7280;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.panel-btn-close:hover {
+  background: #f9fafb;
+}
+
 @media (max-width: 480px) {
   .details-panel {
     width: 100%;

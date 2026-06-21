@@ -16,7 +16,14 @@ function Sidebar({ isOpen, onClose }) {
       {isOpen && <div className="sidebar-overlay" onClick={onClose} />}
 
       <aside className={`sidebar ${isOpen ? "sidebar--open" : ""}`}>
-        <button className="sidebar-close" onClick={onClose}>Close</button>
+        <div className="sidebar-brand">
+          <div className="sidebar-logo">Z</div>
+          <div>
+            <p className="sidebar-company">ZentrixHR</p>
+            <p className="sidebar-tagline">HR Management</p>
+          </div>
+          <button className="sidebar-close" onClick={onClose}>✕</button>
+        </div>
 
         <nav className="sidebar-nav">
           {navLinks.map((link) => (
