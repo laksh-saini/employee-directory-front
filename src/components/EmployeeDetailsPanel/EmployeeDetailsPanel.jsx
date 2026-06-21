@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import "./EmployeeDetailsPanel.css"
 
-function EmployeeDetailsPanel({ employee, onClose }) {
+function EmployeeDetailsPanel({ employee, onClose, onEdit }) {
   useEffect(() => {
     const handleEsc = (e) => {
       if (e.key === "Escape") onClose()
@@ -63,6 +63,15 @@ function EmployeeDetailsPanel({ employee, onClose }) {
             <span className="detail-value">{employee.joinDate}</span>
           </li>
         </ul>
+
+        <div className="panel-footer">
+          <button className="panel-btn-edit" onClick={onEdit}>
+            Edit Profile
+          </button>
+          <button className="panel-btn-close" onClick={onClose}>
+            Close
+          </button>
+        </div>
       </div>
     </>
   )

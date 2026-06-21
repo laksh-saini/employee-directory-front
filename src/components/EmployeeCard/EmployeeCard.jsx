@@ -1,11 +1,21 @@
 import "./EmployeeCard.css"
 
-function EmployeeCard({ employee, onSelect }) {
+function EmployeeCard({ employee, onSelect, onEdit, onDelete }) {
   const statusClass = {
     Active: "status--active",
     "On Leave": "status--onleave",
     Resigned: "status--resigned",
   }[employee.status]
+
+  function handleEdit(e) {
+    e.stopPropagation()
+    onEdit(employee)
+  }
+
+  function handleDelete(e) {
+    e.stopPropagation()
+    onDelete(employee)
+  }
 
   return (
     <div className="employee-card" onClick={() => onSelect(employee)}>
@@ -27,7 +37,14 @@ function EmployeeCard({ employee, onSelect }) {
 
       <div className="card-footer">
         <span className="card-location">{employee.location}</span>
-        <span className="card-view">View Profile</span>
+        <div className="card-actions">
+          <button className="card-btn card-btn--edit" onClick={handleEdit}>
+            Edit
+          </button>
+          <button className="card-btn card-btn--delete" onClick={handleDelete}>
+            Delete
+          </button>
+        </div>
       </div>
     </div>
   )
