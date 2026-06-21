@@ -62,14 +62,13 @@ function App() {
 
         <div className="content">
           <div className="content-top">
-            <div>
-              <h1 className="page-title">Employee Directory</h1>
-              <p className="page-subtitle">
-                Browse and manage all employee records in one place
-              </p>
-            </div>
-            <div className="content-actions">
-              <SearchBar value={query} onChange={setQuery} />
+            <div className="content-title-row">
+              <div>
+                <h1 className="page-title">Employee Directory</h1>
+                <p className="page-subtitle">
+                  Browse and manage all employee records in one place
+                </p>
+              </div>
               <button
                 className="btn-add"
                 onClick={() => setFormEmployee(null)}
@@ -77,6 +76,7 @@ function App() {
                 Add Employee
               </button>
             </div>
+            <SearchBar value={query} onChange={setQuery} />
           </div>
 
           {loading && <LoadingSpinner />}
