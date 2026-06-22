@@ -90,7 +90,12 @@ function useEmployees() {
   }
 
   async function updateEmployee(id, formData) {
-    await editEmployee(id, formData)
+    const local = getLocalData()
+    const wasLocallyAdded = local.added.some((e) => e.id === id)
+
+    if (!wasLocallyAdded) {
+      await editEmployee(id, formData)
+    }
 
     const updatedFields = {
       name: `${formData.firstName} ${formData.lastName}`,
@@ -107,9 +112,6 @@ function useEmployees() {
       bio: `${formData.firstName} works as a ${formData.jobTitle} in the ${formData.department} department.`,
     }
 
-    const local = getLocalData()
-    const wasLocallyAdded = local.added.some((e) => e.id === id)
-
     if (wasLocallyAdded) {
       local.added = local.added.map((e) => (e.id === id ? { ...e, ...updatedFields } : e))
     } else {
@@ -123,10 +125,12 @@ function useEmployees() {
   }
 
   async function removeEmployee(id) {
-    await deleteEmployee(id)
-
     const local = getLocalData()
     const wasLocallyAdded = local.added.some((e) => e.id === id)
+
+    if (!wasLocallyAdded) {
+      await deleteEmployee(id)
+    }
 
     if (wasLocallyAdded) {
       local.added = local.added.filter((e) => e.id !== id)
