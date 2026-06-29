@@ -1,19 +1,7 @@
 import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
+import { DEPARTMENTS, STATUSES } from "../../constants"
 import "./EmployeeForm.css"
-
-const departments = [
-  "Engineering",
-  "Design",
-  "Marketing",
-  "HR",
-  "Legal",
-  "Finance",
-  "Operations",
-  "IT",
-]
-
-const statuses = ["Active", "On Leave", "Resigned"]
 
 function EmployeeForm({ employee, onSubmit, onClose }) {
   const [submitting, setSubmitting] = useState(false)
@@ -141,7 +129,7 @@ function EmployeeForm({ employee, onSubmit, onClose }) {
                 })}
               >
                 <option value="">Select department</option>
-                {departments.map((d) => (
+                {DEPARTMENTS.map((d) => (
                   <option key={d} value={d}>{d}</option>
                 ))}
               </select>
@@ -181,7 +169,7 @@ function EmployeeForm({ employee, onSubmit, onClose }) {
                   required: "Status is required",
                 })}
               >
-                {statuses.map((s) => (
+                {STATUSES.map((s) => (
                   <option key={s} value={s}>{s}</option>
                 ))}
               </select>

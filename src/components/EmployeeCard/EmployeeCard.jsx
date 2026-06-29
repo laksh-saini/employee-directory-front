@@ -1,3 +1,5 @@
+import { memo } from "react"
+import { Link } from "react-router-dom"
 import "./EmployeeCard.css"
 
 function EmployeeCard({ employee, onSelect, onEdit, onDelete }) {
@@ -36,7 +38,13 @@ function EmployeeCard({ employee, onSelect, onEdit, onDelete }) {
       </div>
 
       <div className="card-footer">
-        <span className="card-location">{employee.location}</span>
+        <Link
+          to={`/employees/${employee.id}`}
+          className="card-view-link"
+          onClick={(e) => e.stopPropagation()}
+        >
+          View Profile
+        </Link>
         <div className="card-actions">
           <button className="card-btn card-btn--edit" onClick={handleEdit}>
             Edit
@@ -50,4 +58,4 @@ function EmployeeCard({ employee, onSelect, onEdit, onDelete }) {
   )
 }
 
-export default EmployeeCard
+export default memo(EmployeeCard)
