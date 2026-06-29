@@ -1,20 +1,8 @@
-import { useState, useEffect } from "react"
-import { getAllEmployees, addEmployee, editEmployee, deleteEmployee } from "../api/employeeApi"
+import { useState, useEffect, useMemo, useCallback } from "react"
+import { getAllEmployees, addEmployee, editEmployee, deleteEmployee } from "../services/employeeApi"
 import { normalizeUser, getAvatarColor } from "../utils/normalizeUser"
-
-const STORAGE_KEY = "emp_local"
-
-function getLocalData() {
-  try {
-    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || { added: [], deleted: [], edited: {} }
-  } catch {
-    return { added: [], deleted: [], edited: {} }
-  }
-}
-
-function saveLocalData(data) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(data))
-}
+import { getLocalData, saveLocalData } from "../utils/localStorage"
+import useDebounce from "./useDebounce"
 
 function useEmployees() {
   const [allEmployees, setAllEmployees] = useState([])
@@ -22,21 +10,24 @@ function useEmployees() {
   const [error, setError] = useState(null)
   const [query, setQuery] = useState("")
 
+  const debouncedQuery = useDebounce(query, 400)
+
   useEffect(() => {
     load()
   }, [])
 
-  const employees = allEmployees.filter((emp) => {
-    if (!query.trim()) return true
-    const q = query.toLowerCase()
-    return (
-      emp.name.toLowerCase().includes(q) ||
-      emp.role.toLowerCase().includes(q) ||
-      emp.department.toLowerCase().includes(q) ||
-      emp.email.toLowerCase().includes(q) ||
-      emp.location.toLowerCase().includes(q)
+  const employees = useMemo(() => {
+    if (!debouncedQuery.trim()) return allEmployees
+    const q = debouncedQuery.toLowerCase()
+    return allEmployees.filter(
+      (emp) =>
+        emp.name.toLowerCase().includes(q) ||
+        emp.role.toLowerCase().includes(q) ||
+        emp.department.toLowerCase().includes(q) ||
+        emp.email.toLowerCase().includes(q) ||
+        emp.location.toLowerCase().includes(q)
     )
-  })
+  }, [allEmployees, debouncedQuery])
 
   async function load() {
     setLoading(true)
@@ -58,7 +49,7 @@ function useEmployees() {
     }
   }
 
-  async function createEmployee(formData) {
+  const createEmployee = useCallback(async (formData) => {
     await addEmployee(formData)
 
     const newEmployee = {
@@ -87,9 +78,9 @@ function useEmployees() {
     saveLocalData(local)
 
     setAllEmployees((prev) => [newEmployee, ...prev])
-  }
+  }, [])
 
-  async function updateEmployee(id, formData) {
+  const updateEmployee = useCallback(async (id, formData) => {
     const local = getLocalData()
     const wasLocallyAdded = local.added.some((e) => e.id === id)
 
@@ -122,9 +113,9 @@ function useEmployees() {
     setAllEmployees((prev) =>
       prev.map((emp) => (emp.id === id ? { ...emp, ...updatedFields } : emp))
     )
-  }
+  }, [])
 
-  async function removeEmployee(id) {
+  const removeEmployee = useCallback(async (id) => {
     const local = getLocalData()
     const wasLocallyAdded = local.added.some((e) => e.id === id)
 
@@ -141,10 +132,11 @@ function useEmployees() {
     saveLocalData(local)
 
     setAllEmployees((prev) => prev.filter((emp) => emp.id !== id))
-  }
+  }, [])
 
   return {
     employees,
+    allEmployees,
     loading,
     error,
     query,

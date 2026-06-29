@@ -17,7 +17,8 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 380px;
-  background: #fff;
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 16px;
   padding: 28px;
   z-index: 201;
@@ -34,18 +35,18 @@
   margin: 0 0 10px;
   font-size: 16px;
   font-weight: 700;
-  color: #111;
+  color: var(--text);
 }
 
 .dialog-message {
   margin: 0 0 24px;
   font-size: 14px;
-  color: #6b7280;
+  color: var(--text-muted);
   line-height: 1.6;
 }
 
 .dialog-message strong {
-  color: #111;
+  color: var(--text);
 }
 
 .dialog-actions {
@@ -58,16 +59,16 @@
   padding: 10px;
   font-size: 14px;
   font-weight: 500;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--border);
   border-radius: 8px;
-  background: #fff;
-  color: #6b7280;
+  background: var(--surface);
+  color: var(--text-muted);
   cursor: pointer;
   transition: background 0.15s;
 }
 
 .dialog-btn-cancel:hover {
-  background: #f9fafb;
+  background: var(--surface-hover);
 }
 
 .dialog-btn-delete {
@@ -77,7 +78,7 @@
   font-weight: 600;
   border: none;
   border-radius: 8px;
-  background: #dc2626;
+  background: var(--danger);
   color: #fff;
   cursor: pointer;
   transition: background 0.15s;

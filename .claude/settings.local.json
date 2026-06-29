@@ -8,7 +8,8 @@
       "Bash(npx tsc *)",
       "Bash(npm run *)",
       "Bash(rm -rf /Users/lakshsaini/employee-directory/src /Users/lakshsaini/employee-directory/tsconfig* /Users/lakshsaini/employee-directory/tailwind.config.js /Users/lakshsaini/employee-directory/postcss.config.js)",
-      "Bash(node --input-type=module)"
+      "Bash(node --input-type=module)",
+      "Read(//tmp/**)"
     ],
     "additionalDirectories": [
       "/Users/lakshsaini/employee-directory"

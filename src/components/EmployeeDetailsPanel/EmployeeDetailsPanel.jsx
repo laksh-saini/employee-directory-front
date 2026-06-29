@@ -1,4 +1,5 @@
 import { useEffect } from "react"
+import { Link } from "react-router-dom"
 import "./EmployeeDetailsPanel.css"
 
 function EmployeeDetailsPanel({ employee, onClose, onEdit }) {
@@ -68,6 +69,13 @@ function EmployeeDetailsPanel({ employee, onClose, onEdit }) {
           <button className="panel-btn-edit" onClick={onEdit}>
             Edit Profile
           </button>
+          <Link
+            to={`/employees/${employee.id}`}
+            className="panel-btn-view"
+            onClick={onClose}
+          >
+            Full Profile
+          </Link>
           <button className="panel-btn-close" onClick={onClose}>
             Close
           </button>
