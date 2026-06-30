@@ -1,5 +1,6 @@
 import { useState, useCallback } from "react"
 import useEmployees from "../../hooks/useEmployees"
+import { useToast } from "../../context/ToastContext"
 import SearchBar from "../../components/SearchBar/SearchBar"
 import EmployeeCard from "../../components/EmployeeCard/EmployeeCard"
 import EmployeeDetailsPanel from "../../components/EmployeeDetailsPanel/EmployeeDetailsPanel"
@@ -12,6 +13,8 @@ function EmployeeDirectoryPage() {
   const [selectedEmployee, setSelectedEmployee] = useState(null)
   const [formEmployee, setFormEmployee] = useState(undefined)
   const [deleteTarget, setDeleteTarget] = useState(null)
+
+  const { showToast } = useToast()
 
   const {
     employees,
@@ -28,22 +31,26 @@ function EmployeeDirectoryPage() {
   const handleFormSubmit = useCallback(async (data) => {
     if (formEmployee === null) {
       await createEmployee(data)
+      showToast(`${data.firstName} ${data.lastName} added successfully`)
     } else {
       await updateEmployee(formEmployee.id, data)
+      showToast(`${data.firstName} ${data.lastName} updated`)
       if (selectedEmployee?.id === formEmployee.id) {
         setSelectedEmployee(null)
       }
     }
     setFormEmployee(undefined)
-  }, [formEmployee, selectedEmployee, createEmployee, updateEmployee])
+  }, [formEmployee, selectedEmployee, createEmployee, updateEmployee, showToast])
 
   const handleDeleteConfirm = useCallback(async () => {
+    const name = deleteTarget.name
     await removeEmployee(deleteTarget.id)
     if (selectedEmployee?.id === deleteTarget.id) {
       setSelectedEmployee(null)
     }
     setDeleteTarget(null)
-  }, [deleteTarget, selectedEmployee, removeEmployee])
+    showToast(`${name} removed`, "error")
+  }, [deleteTarget, selectedEmployee, removeEmployee, showToast])
 
   const handleEditFromPanel = useCallback(() => {
     setFormEmployee(selectedEmployee)
